@@ -1,4 +1,5 @@
 # React Fireworks (jQuery-fireworks remake)
+Original JQuery version:
 https://github.com/mgrigajtis/jquery-fireworks
 
 # install
@@ -15,9 +16,17 @@ $ npm install
 $ yarn start
 ```
 
+![Screenshot](./screenshot.png)
 ---
 
 # React版烟花特效
+
+很喜欢这个特效，所以做了个React重置版本。
+
+原作者JQuery版本链接:
+https://github.com/mgrigajtis/jquery-fireworks
+原版演示：
+https://www.jq22.com/jquery-info11031
 
 ## 示例构建
 

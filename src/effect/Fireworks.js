@@ -1,4 +1,4 @@
-import React, {forwardRef, useRef, useEffect, useImperativeHandle} from 'react'
+import React, {forwardRef, useRef, useState, useImperativeHandle} from 'react'
 import { loop } from "./loop";
 
 function Fireworks(props, ref) {
@@ -12,9 +12,7 @@ function Fireworks(props, ref) {
   let canvas = useRef()
   let canvasBuffer = useRef()
   let dataRef = useRef()
-  // useEffect(() => {
-
-  // }, [canvas, canvasBuffer])
+  const [opacity, setOpacity] = useState(0)
 
   useImperativeHandle(ref, () => ({
     start() {
@@ -23,7 +21,7 @@ function Fireworks(props, ref) {
         console.log('Looks like this element is already started!');
         return;
       }
-
+      
       let data = {
         canvas: canvas.current,
         context: canvas.current.getContext('2d'),
@@ -38,6 +36,8 @@ function Fireworks(props, ref) {
       // data.interval = setTimeout(loop.bind(this, data), 1000 / 50);
       data.interval = setInterval(loop.bind(this, data), 1000 / 50);
       dataRef.current = data
+
+      setOpacity(1)
     },
 
     stop() {
@@ -45,9 +45,12 @@ function Fireworks(props, ref) {
         console.log('Looks like this element is not yet started!');
         return;
       }
-      clearInterval(dataRef.current.interval);
-    
-      dataRef.current = null
+      setOpacity(0)
+
+      setTimeout(() => {
+        clearInterval(dataRef.current.interval);
+        dataRef.current = null
+      }, 1000)
     }
   }))
 
@@ -59,8 +62,10 @@ function Fireworks(props, ref) {
         bottom: 0,
         left: 0,
         right: 0,
+        opacity: opacity, 
+        transition: "opacity 1s"
       }}
-      width={width} height={height}
+      width={width} height={height} 
       />
       <canvas ref={canvasBuffer} width={width} height={height} style={{display:'none'}}/>
     </>

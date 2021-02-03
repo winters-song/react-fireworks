@@ -26,16 +26,12 @@ function App() {
     setHeight(fireworksWrapper.current.offsetHeight)
   }, [fireworksWrapper])
 
-  useEffect(() => {
-    setTimeout(() => {
-      fireworks.current.start()
-    }, 1000)
-
-    setTimeout(() => {
-      fireworks.current.stop()
-    }, 1000 * 10)
-
-  }, [fireworks])
+  const startHandler = () => {
+    fireworks.current.start()
+  }
+  const stopHandler = () => {
+    fireworks.current.stop()
+  }
 
   useEffect(() => {
     window.addEventListener('resize', () => {
@@ -50,25 +46,25 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <button type="button" onClick={startHandler} >
+          Start
+        </button>
 
-      <div ref={fireworksWrapper} style={{
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-      }}>
-        <Fireworks ref={fireworks} width={width} height={height}/>
-      </div>
+        <button type="button" onClick={stopHandler} >
+          Stop
+        </button>
+
+        {/* Fireworks Layer */}
+        <div ref={fireworksWrapper} style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+        }}>
+          <Fireworks ref={fireworks} width={width} height={height}/>
+        </div>
+      </header>
     </div>
   );
 }
