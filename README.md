@@ -5,6 +5,7 @@
 
 原作者JQuery版本链接:
 https://github.com/mgrigajtis/jquery-fireworks
+
 原版演示：
 https://www.jq22.com/jquery-info11031
 
@@ -23,6 +24,7 @@ $ npm install
 ```shell
 $ yarn start
 ```
+
 ---
 
 # React Fireworks (jQuery-fireworks remake)
