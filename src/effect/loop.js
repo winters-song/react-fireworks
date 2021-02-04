@@ -12,8 +12,9 @@ export function loop(data) {
   launch(data);
 
   // Fade the background out slowly
+  // buffer画布做缓存，产生烟花渐隐轨迹
   data.contextBuffer.clearRect(0, 0, data.canvas.width, data.canvas.height);
-  data.contextBuffer.globalAlpha = 0.9;
+  data.contextBuffer.globalAlpha = 0.8;
   data.contextBuffer.drawImage(data.canvas, 0, 0);
   data.context.clearRect(0, 0, data.canvas.width, data.canvas.height);
   data.context.drawImage(data.canvasBuffer, 0, 0);
@@ -26,6 +27,7 @@ export function loop(data) {
     rocket.render(data.context);
 
     // random chance of 1% if rockets is above the middle
+    // 超过屏幕1/3, 1%几率爆炸（随机高度爆炸）
     let randomChance = rocket.pos.y < (data.canvas.height * 2 / 3) ? (Math.random() * 100 <= 1) : false;
 
     /* Explosion rules
